@@ -1,3 +1,7 @@
+import java.io.*;
+import java.net.*;
+import java.util.Scanner;
+
 public class Cliente {
     public static void main(String[] args) {
         String servidor = "10.43.103.30"; // Reemplaza con la IP de la VM que ejecuta el servidor
