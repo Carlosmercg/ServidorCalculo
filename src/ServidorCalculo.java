@@ -22,7 +22,9 @@ public class ServidorCalculo {
 
                     System.out.println("Servidor de Cálculo recibió: " + datos);
                     System.out.println("Operadores recibidos: " + operadores);
+
                     String[] numeros = datos.split(",");
+                    String[] opera = operadores.split(",");
                     
 
                     float num1 = Float.parseFloat(numeros[0]);
