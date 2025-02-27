@@ -58,7 +58,7 @@ public class ServidorCalculo {
                         System.out.println("Resultado intermedio recibido: " + resultadoIntermedio);
 
                         // Conectar con el Servidor de Operación 2
-                        String ipServidorOp2 = "10.43.103.204";  // Cambia esto por la IP real del servidor de operaciones 2
+                        String ipServidorOp2 = "10.43.103.102";  // Cambia esto por la IP real del servidor de operaciones 2
                         int puertoOp2 = 6002;
 
                         try (Socket socketOp2 = new Socket(ipServidorOp2, puertoOp2);
