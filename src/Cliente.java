@@ -34,7 +34,7 @@ public class Cliente {
             // Luego enviar operadores
             salida.println(op1 + "," + op2); 
 
-            println("Cliente envia: ",num1," + ",num2," + ",num3,"  ",op1," ",op2)
+            println("Cliente envia: ",num1," + ",num2," + ",num3,"  ",op1," ",op2);
 
             // Recibir resultado final
             String resultado = entrada.readLine();
