@@ -28,10 +28,13 @@ public class Cliente {
             System.out.print("Ingrese el operador de la 2da operación: ");
             String op2 = scanner.nextLine();
 
-            // Enviar datos al servidor
-            String datos = num1 + "," + num2 + "," + num3 + "," + op1 + "," + op2;
-            System.out.println("Cliente envía: " + datos);
-            salida.println(datos);
+            // Enviar números primero
+            salida.println(num1 + "," + num2 + "," + num3);
+
+            // Luego enviar operadores
+            salida.println(op1 + "," + op2); 
+
+            println("Cliente envia: ",num1," + ",num2," + ",num3,"  ",op1," ",op2)
 
             // Recibir resultado final
             String resultado = entrada.readLine();
