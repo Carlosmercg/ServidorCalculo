@@ -19,21 +19,11 @@ public class ServidorCalculo {
                     String datos = entradaCliente.readLine();
                     String operadores = entradaCliente.readLine();
                     
-                    if (datos == null || operadores == null) {
-                        System.out.println("Error: datos nulos recibidos del cliente.");
-                        continue;
-                    }
 
                     System.out.println("Servidor de Cálculo recibió: " + datos);
                     System.out.println("Operadores recibidos: " + operadores);
-
                     String[] numeros = datos.split(",");
-                    String[] opera = operadores.split(",");
                     
-                    if (numeros.length != 3 || opera.length != 2) {
-                        System.out.println("Error: formato de datos incorrecto.");
-                        continue;
-                    }
 
                     float num1 = Float.parseFloat(numeros[0]);
                     float num2 = Float.parseFloat(numeros[1]);
