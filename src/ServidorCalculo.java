@@ -1,7 +1,5 @@
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
-
 
 public class ServidorCalculo {
     public static void main(String[] args) {
@@ -19,6 +17,10 @@ public class ServidorCalculo {
                     String datos = entradaCliente.readLine();
                     String operadores = entradaCliente.readLine();
                     
+                    if (datos == null || operadores == null) {
+                        System.out.println("Error: datos nulos recibidos del cliente.");
+                        continue;
+                    }
 
                     System.out.println("Servidor de Cálculo recibió: " + datos);
                     System.out.println("Operadores recibidos: " + operadores);
@@ -26,6 +28,10 @@ public class ServidorCalculo {
                     String[] numeros = datos.split(",");
                     String[] opera = operadores.split(",");
                     
+                    if (numeros.length != 3 || opera.length != 2) {
+                        System.out.println("Error: formato de datos incorrecto.");
+                        continue;
+                    }
 
                     float num1 = Float.parseFloat(numeros[0]);
                     float num2 = Float.parseFloat(numeros[1]);
@@ -50,7 +56,7 @@ public class ServidorCalculo {
                         System.out.println("Resultado intermedio recibido: " + resultadoIntermedio);
 
                         // Conectar con el Servidor de Operación 2
-                        String ipServidorOp2 = "10.43.103.102";  // Cambia esto por la IP real del servidor de operaciones 2
+                        String ipServidorOp2 = "10.43.103.204";  // Cambia esto por la IP real del servidor de operaciones 2
                         int puertoOp2 = 6002;
 
                         try (Socket socketOp2 = new Socket(ipServidorOp2, puertoOp2);
