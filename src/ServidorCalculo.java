@@ -6,6 +6,8 @@ public class ServidorCalculo {
         int puerto = 6000;
         String resultadoFinal;
         String resultadoIntermedio;
+        String ipServidorOp2 = "localhost";  // Cambia esto por la IP real del servidor de operaciones 2
+        int puertoOp2 = 6002;
 
         try (ServerSocket servidor = new ServerSocket(puerto, 50, InetAddress.getByName("0.0.0.0"))) {
             System.out.println("Servidor de Cálculo esperando conexiones en el puerto " + puerto);
@@ -42,7 +44,7 @@ public class ServidorCalculo {
                     String operador2 = opera[1];
 
                     // Conectar con el Servidor de Operación 1
-                    String ipServidorOp1 = "10.43.103.102";  // Cambia esto por la IP real del servidor de operaciones 1
+                    String ipServidorOp1 = "localhost";  // Cambia esto por la IP real del servidor de operaciones 1
                     int puertoOp1 = 6001;
 
                     try (Socket socketOp1 = new Socket(ipServidorOp1, puertoOp1);
@@ -58,9 +60,6 @@ public class ServidorCalculo {
                         System.out.println("Resultado intermedio recibido: " + resultadoIntermedio);
 
                         // Conectar con el Servidor de Operación 2
-                        String ipServidorOp2 = "10.43.103.204";  // Cambia esto por la IP real del servidor de operaciones 2
-                        int puertoOp2 = 6002;
-
                         try (Socket socketOp2 = new Socket(ipServidorOp2, puertoOp2);
                              PrintWriter salidaOp2 = new PrintWriter(socketOp2.getOutputStream(), true);
                              BufferedReader entradaOp2 = new BufferedReader(new InputStreamReader(socketOp2.getInputStream()))) {
@@ -84,6 +83,7 @@ public class ServidorCalculo {
                             } else {
                                 System.out.println("Servidor 1: " + resultadoIntermedio + " " + operador2 + " " + num3 + " = " + resultado2);
                                 resultadoFinal = String.valueOf(resultado2);
+                                salidaCliente.println(resultadoFinal);
                             }
                         }   // Realizar la operación
                     } catch (Exception e) {
@@ -92,10 +92,21 @@ public class ServidorCalculo {
                         Float resultado = calcular(num1, num2, operador1);
                         if (resultado == null) {
                             System.out.println("Error: Operador inválido.");
-                            resultadoIntermedio = String.valueOf(resultado);
                         } else {
                             System.out.println("Servidor 1: " + num1 + " " + operador1 + " " + num2 + " = " + resultado);
                             resultadoIntermedio = String.valueOf(resultado);
+                            Socket socketOp2 = new Socket(ipServidorOp2, puertoOp2);
+                            BufferedReader entradaOp2 = new BufferedReader(new InputStreamReader(socketOp2.getInputStream()));
+                            PrintWriter salidaOp2 = new PrintWriter(socketOp2.getOutputStream(), true);
+                            salidaOp2.println(resultadoIntermedio + "," + num3);
+                            salidaOp2.println(operador2);
+                            // Recibir resultado final
+                            resultadoFinal = entradaOp2.readLine();
+                            System.out.println("Resultado final recibido del servidor de operaciones 2: " + resultadoFinal);
+                            // Enviar el resultado final al cliente
+                            salidaCliente.println(resultadoFinal);
+                            System.out.println("Resultado final enviado al cliente: " + resultadoFinal);
+
                         }
                     }
                 }

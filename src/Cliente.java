@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Cliente {
     public static void main(String[] args) {
-        String servidor = "10.43.103.30"; // Reemplaza con la IP del servidor
+        String servidor = "localhost"; // Reemplaza con la IP del servidor
         int puerto = 6000;
 
         try (Socket socket = new Socket(servidor, puerto);
