@@ -74,8 +74,28 @@ public class ServidorCalculo {
                             // Enviar el resultado final al cliente
                             salidaCliente.println(resultadoFinal);
                             System.out.println("Resultado final enviado al cliente: " + resultadoFinal);
+                        }catch (Exception e) {
+                                                    // Realizar la operación
+                        Float resultado = calcular(num1, num2, operador1);
+                        if (resultado == null) {
+                            System.out.println("Error: Operador inválido.");
+                            salida.println("Error");
+                            resultadoIntermedio=resultado;
+                        } else {
+                            System.out.println("Servidor 1: " + num1 + " " + operador1 + " " + num2 + " = " + resultado);
+                            salida.println(resultado);
+                            resultadoIntermedio=resultado;
                         }
-                    }
+                    }   // Realizar la operación
+                        Float resultado2 = calcular(resultadoIntermedio, num3, operador2);
+                        if (resultado2 == null) {
+                            System.out.println("Error: Operador inválido.");
+                            salida.println("Error");
+                        } else {
+                            System.out.println("Servidor 1: " + resultadoIntermedio + " " + operador2 + " " + num3 + " = " + resultado);
+                            salida.println(resultado2);
+                            resultadoFinal=resultado2;
+                        }
                 } catch (Exception e) {
                     System.out.println("Error en la conexión con el cliente: " + e.getMessage());
                     e.printStackTrace();
@@ -84,6 +104,25 @@ public class ServidorCalculo {
         } catch (IOException e) {
             System.out.println("Error al iniciar el servidor: " + e.getMessage());
             e.printStackTrace();
+        }
+    } 
+
+        public class Float calcular(float num1, float num2, String operador) {
+        switch (operador) {
+            case "+":
+                return num1 + num2;
+            case "-":
+                return num1 - num2;
+            case "*":
+                return num1 * num2;
+            case "/":
+                if (num2 == 0) {
+                    System.out.println("Error: División por cero.");
+                    return null;
+                }
+                return num1 / num2;
+            default:
+                return null;  // Operador inválido
         }
     }
 }
