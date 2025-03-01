@@ -4,8 +4,8 @@ import java.net.*;
 public class ServidorCalculo {
     public static void main(String[] args) {
         int puerto = 6000;
-        String ipOperacion1 = "localhost"; // IP del ServidorOperacion1
-        String ipOperacion2 = "localhost"; // IP del ServidorOperacion2
+        String ipOperacion1 = "10.43.103.102"; // IP del ServidorOperacion1
+        String ipOperacion2 = "10.43.103.204"; // IP del ServidorOperacion2
         int puertoOp1 = 6001;
         int puertoOp2 = 6002;
 

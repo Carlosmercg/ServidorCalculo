@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Cliente {
     public static void main(String[] args) {
-        String servidor = "localhost"; // Reemplaza con la IP del servidor
+        String servidor = "10.43.103.30"; // Reemplaza con la IP del servidor
         int puerto = 6000;
 
         try (Socket socket = new Socket(servidor, puerto);
@@ -27,7 +27,7 @@ public class Cliente {
             salida.println(num1 + "," + num2 + "," + num3);
 
             // Luego enviar operadores
-            salida.println(op1 + "," + op2); 
+            salida.println(op1 + "," + op2);
 
             // Recibir resultado final
             String resultado = entrada.readLine();
