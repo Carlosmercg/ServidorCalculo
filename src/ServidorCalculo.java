@@ -57,10 +57,10 @@ public class ServidorCalculo {
                         System.out.println("Servidor 1 no disponible. Realizando operación local.");
                         resultadoIntermedio = calcular(num1, num2, operador1);
                         System.out.println("El resultado intermedio de la operacion es: " + resultadoIntermedio);
-                        System.out.println("Enviando dato al servidor 2")
+                        System.out.println("Enviando dato al servidor 2");
                     } else {
                         System.out.println("El resultado intermedio de la operacion es: " + resultadoIntermedio);
-                        System.out.println("Enviando dato al servidor 2")
+                        System.out.println("Enviando dato al servidor 2");
                     }
                         
 
